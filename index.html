@@ -155,9 +155,10 @@
     $("#css-code").css("margin-left","-350px");
     $("#js-code").css("margin-left","-350px");
     $(".tab").click(function(event){
+        $(this).nextAll(".tab").css("margin-left")
         $(this).nextAll(".code-container").animate(
             {width:"0px"},
-            {}
+            {duration:1500, queue:false}
         );
     })
     </script>
