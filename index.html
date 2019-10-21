@@ -154,7 +154,12 @@
     $(".code-cintainer").hide();
     $("#css-code").css("margin-left","-350px");
     $("#js-code").css("margin-left","-350px");
-
+    $(".tab").click(function(event){
+        $(this).nextAll(".code-container").animate(
+            {width:"0px"},
+            {}
+        );
+    })
     </script>
 </body>
 </html>
