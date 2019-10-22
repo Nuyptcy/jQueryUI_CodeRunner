@@ -163,7 +163,14 @@
         $(this).next().animate({
             backgroundColor:"#1D1E22", 
             }
-            )
+            );
+            //左邊邊距
+            var leftOfset = $(this).offset().left;
+
+            // console.log(leftOfset);
+
+
+            if(leftOfset>680){
         $(this).next().animate(
             {
                 width: "680px",
@@ -173,7 +180,28 @@
                 duration: 2000, queue:false
             }
             );
-    });
+
+             // pevAll上列所有元素中帶有code-container的
+             $(this).prevAll(".code-container").animate(
+                {
+                    width:"0px",
+                },
+                {
+                    duration: 1000, queue: false
+                }
+                )
+    } else{
+    (this).next().animate(
+            {
+                width: "680px",
+            },
+            {
+                // 不添加到queue裡面
+                duration: 2000, queue:false
+            }
+            );
+           
+    };
     </script>
 </body>
 </html>
