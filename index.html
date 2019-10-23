@@ -187,7 +187,7 @@
     </ul>
     <div id="result-container">
         <h2>結果</h2>
-        <iframe ></iframe>
+        <iframe id="result-frame"></iframe>
 
     </div>
 
@@ -253,7 +253,12 @@
                 // 不添加到queue裡面
                 duration: 2000, queue:false
             }
+            
             );
+            $("runCode").click(function(){
+                $("#result-frame").contents().find("body").html($("#html-code").val());
+                
+            })
            
     };
     </script>
