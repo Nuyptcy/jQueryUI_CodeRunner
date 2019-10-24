@@ -257,8 +257,10 @@
             );
             $("runCode").click(function(){
                 // find body中的html
+                //head　沒有style所以加在jQuery裡
+                $("#result-frame").contents().find("head").html("<style>"+$("textarea#html-code").val());
                 $("#result-frame").contents().find("body").html($("textarea#html-code").val());
-                $("#result-")
+              
     
             })
            
