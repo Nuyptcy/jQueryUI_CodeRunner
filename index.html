@@ -256,8 +256,10 @@
             
             );
             $("runCode").click(function(){
-                $("#result-frame").contents().find("body").html($("#html-code").val());
-                
+                // find body中的html
+                $("#result-frame").contents().find("body").html($("textarea#html-code").val());
+                $("#result-")
+    
             })
            
     };
