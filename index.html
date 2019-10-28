@@ -200,7 +200,10 @@
     $("#js-code").css("margin-left","-350px");
 
     var $result = $("#result-frame");
-    var $window = $(window).on("resize", function(){})
+    var $window = $(window).on("resize", function(){
+        var height = $(this).height() -530;
+        $result.height(height);
+    })
     $(".tab").click(function(event){
         $(this).nextAll(".tab").css("margin-left")
         $(this).nextAll(".code-container").animate(
