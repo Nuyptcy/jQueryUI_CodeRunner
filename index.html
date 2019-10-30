@@ -201,8 +201,9 @@
 
     var $result = $("#result-frame");
     var $window = $(window).on("resize", function(){
-        var height = $(this).height() -550;
+        var height = $(this).height() -530;
         $result.height(height);
+        //執行
     }).trigger(resize);
     $(".tab").click(function(event){
         $(this).nextAll(".tab").css("margin-left")
