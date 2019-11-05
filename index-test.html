@@ -78,7 +78,47 @@
             }
 
             #accordion{
-                background-color:rgb(237,177, 174;            }
+                background-color:rgb(237,177, 174);
+                width: 100%;
+                height: 400px;
+                margin: auto;
+                /* overflow: hidden; */
+            }
+
+            #accordion h3, #accordion div{
+                display: inline-block;
+                text-align: center;
+                vertical-align: top;
+            }
+
+            #accordion h3{
+                background-color: #36383F;
+                width: 400px;
+                height: 30px;
+                color: white;
+                transform: rotate(270deg);
+
+                margin: 185px 0 0 -170px;
+
+            }
+
+            #accordion div{
+                width: 340px;
+                height: 400px;
+                margin: 0 5px 0 -170px;
+            
+            }
+
+            textarea{
+                width: 100%;
+                /* 繼承400px */
+                height: inherit;
+                resize: none;
+                background-color: inherit;
+                border: none;
+                color:purple;
+                font-size: 20px;
+            }
 
             
 
@@ -124,6 +164,16 @@
         </ul>
 
         <script type="text/javascript">
+        $(".code-container").hide()
+        $("#css-code").css("margin-left", "-350px");
+        $("#js-code").css("margin-left", "-350px");
+        $(".tab").click(function(event){
+            // animate製作時間的間隔
+            $(this).nextAll(".code-container").animate(
+                {width: "0px"},
+                {duration: 1500, queue:false}
+                );
+        })
         </script>
     </body>
 </html>
