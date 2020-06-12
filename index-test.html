@@ -43,7 +43,7 @@
                 width:120px;
                 border: none;
                 /* 無border所以以padding補上 */
-                padding: 5px;;
+                padding: 5px;
                 border-radius: 4px;
                 background-color: rgb(237,177, 174);
                 cursor:cell;
@@ -82,7 +82,7 @@
                 width: 100%;
                 height: 400px;
                 margin: auto;
-                /* overflow: hidden; */
+                overflow: hidden;
             }
 
             #accordion h3, #accordion div{
@@ -116,8 +116,39 @@
                 resize: none;
                 background-color: inherit;
                 border: none;
-                color:purple;
+                color:#e33460;
                 font-size: 20px;
+            }
+
+            #result-container{
+                background-color: #1D1E22;
+                width: 100%;
+            }
+
+            h2{
+                width: 100%;
+                height: 30px;
+                background-color: #36383F;
+                margin:0;
+                text-align: center;
+                font-family: "Helvetica Neue","Helvetica","Arial";
+                font-weight: normal;
+            }
+
+            iframe{
+                border: none;
+                width: 100%;
+                background-color: white;
+            }
+
+            .footer{
+                background-color: #36383F;
+                width: 100%;
+                height: 40px;
+                position: fixed;
+                bottom:0;
+                left:0;
+
             }
 
             
@@ -137,7 +168,7 @@
         <ul id="accordion">
             <h3 id="html-code" class="tab">HTML</h3>
             <div class="code-container">
-                <!-- id可重複? -->
+                
                 <textarea id="html-code">
 
                 </textarea>
@@ -146,7 +177,7 @@
 
             <h3 id="css-code" class="tab">CSS</h3>
             <div class="code-container">
-                <!-- id可重複? -->
+                
                 <textarea id="css-code">
 
                 </textarea>
@@ -155,25 +186,84 @@
 
             <h3 id="js-code" class="tab">JavaScript</h3>
             <div class="code-container">
-                <!-- id可重複? -->
+                
                 <textarea id="js-code">
 
                 </textarea>
                 
             </div>
         </ul>
+        <div id="result-container">
+            <h2>結果</h2>
+            <iframe id="result-frame"></iframe>
+        </div>
+        <div class="footer"></div>
 
         <script type="text/javascript">
         $(".code-container").hide()
         $("#css-code").css("margin-left", "-350px");
         $("#js-code").css("margin-left", "-350px");
+
         $(".tab").click(function(event){
             // animate製作時間的間隔
+            $(this).nextAll(".tab").css("margin-left","-170px");
             $(this).nextAll(".code-container").animate(
                 {width: "0px"},
                 {duration: 1500, queue:false}
                 );
+
+            var leftOfset = $(this).offset().left;
+            // console.log(leftOfset);
+
+            if(leftOfset>680){
+                // $(this).prevAll(".tab").css("margin-left","-170px");
+                $(this).prevAll(".tab").animate(
+                    {
+                        marginLeft: "-170px",
+                    },
+                    {
+                        duration: 700, queue:false
+                    }
+                    );
+                $(this).next().animate(
+            {
+                width:"680px",
+            },
+            {
+                duration:2000, queue:false
+            }
+            );
+
+            $(this).prevAll(".code-container").animate(
+            {
+                width:"0px",
+            },
+            {
+                duration:1000, queue: false
+            })
+
+
+            }else{
+                $(this).next().animate({
+                width:"680px",},
+                {duration:2000, queue:false}
+            );
+            }
+
+            $(this).next().animate(
+                //jQuery沒有橫槓
+                 {backgroundColor:"#1D1E22",}
+            );
+           
+        });
+        $("#runCode").click(function(){
+            $("#result-frame").contents().find("body").html($("textarea#html-code").val());
+            $("#result-frame").contents().find("head").html("<style>"+$("textarea#css-code").val()+"</style>");
+
+            document.getElementById('result-frame').contentWindow.eval($("textarea#js-code").val())
+
         })
+
         </script>
     </body>
 </html>
